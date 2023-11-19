@@ -1,8 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
 import styles from './recipes.css'
-import { createClient } from 'contentful';
-import { getRecipes } from './contentful';
+
 
 
 export default function Recipes() {
