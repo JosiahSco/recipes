@@ -1,4 +1,36 @@
-.recipesMain {
+header {
+    background-color: #222a31;
+    min-height: 60px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+header h2 {
+    font-size: 42px;
+}
+
+header select, header option {
+    padding: 4px;
+    font-size: 20px;
+    background-color: #457B9D;
+    border: none;
+}
+
+header label {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.rightHeader {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+.recipeHolder {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -8,6 +40,7 @@
     margin-bottom: 50px;
     margin-left: 25px;
     margin-right: 25px;
+    
 }
 
 .recipesMain h1 {
@@ -70,5 +103,18 @@
     .recipesMain {
         justify-content: center;
         align-items: center;
+    }
+
+    header h2 {
+        font-size: 32px;
+    }
+
+    header label {
+        font-size: 20px;
+    }
+
+    header select, header option {
+        width: 150px;
+        font-size: 16px;
     }
 }
