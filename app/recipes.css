@@ -13,37 +13,57 @@ header h2 {
     font-size: 42px;
 }
 
-header select, header option {
+select, option {
     padding: 4px;
     font-size: 20px;
     background-color: #457B9D;
     border: none;
 }
 
-header label {
+label {
     font-size: 24px;
     display: flex;
     align-items: center;
 }
 
-.rightHeader {
-    width: 100%;
+.body {
     display: flex;
-    justify-content: flex-end;
-    margin-right: 20px;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-left: 25px;
+    margin-right: 25px;
+    
 }
 
-.recipeHolder {
+.sort {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.posts {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     /* align-items: center; */
     /* min-height: 100vh; */
-    margin-top: 40px;
+    /* margin-top: 40px; */
     margin-bottom: 50px;
-    margin-left: 25px;
-    margin-right: 25px;
     
+}
+
+label {
+    margin-left: 20px;
+    margin-right: 25px;
+    width: 350px;
+}
+
+label p {
+    font-size: 18px;
+    width: 40%;
+}
+
+label select {
+    width: 250px;
 }
 
 .recipesMain h1 {
@@ -110,16 +130,25 @@ header label {
         align-items: center;
     }
 
+    .body {
+        margin-top: 20px;
+    }
+
+    header {
+        justify-content: center;
+    }
+
     header h2 {
         font-size: 32px;
     }
 
-    header label {
-        font-size: 14px;
+    label p {
+        font-size: 20px;
+        padding: 0;
     }
 
-    header select, header option {
-        width: 140px;
+    select, option {
+        width: 100%;
         font-size: 14px;
     }
 }

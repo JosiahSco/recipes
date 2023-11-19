@@ -49,33 +49,37 @@ export default function Recipes() {
                     {/* <form>
                         <input></input>
                     </form> */}
-                    <label>
-                        Sort By:
-                    <select value={sortBy} onChange={handleSortChange}>
-                        <option>Most Recent</option>
-                        <option>Oldest</option>
-                        <option>Cook Time: Ascending</option>
-                        <option>Cook Time: Descending</option>
-                    </select>
-                    </label>
                 </div>
             </header>
             {/* <h1>Recipe Book (work in progress)</h1> */}
-            <div className='recipeHolder'>
-                {posts.map(post => (
-                    <a href={'/' + post.fields.slug} key={post.fields.slug}>
-                        <div className='recipeCard'>
-                            <div className='imageContainer'> 
-                                <img className='image' src={post.fields.image.fields.file.url}></img>
+            <div className='body'>
+                <div className='sort'>
+                        <label>
+                            <p>Sort By:</p>
+                        <select value={sortBy} onChange={handleSortChange}>
+                            <option>Most Recent</option>
+                            <option>Oldest</option>
+                            <option>Cook Time: Ascending</option>
+                            <option>Cook Time: Descending</option>
+                        </select>
+                        </label>
+                </div>
+                <div className='posts'>
+                    {posts.map(post => (
+                        <a href={'/' + post.fields.slug} key={post.fields.slug}>
+                            <div className='recipeCard'>
+                                <div className='imageContainer'> 
+                                    <img className='image' src={post.fields.image.fields.file.url}></img>
+                                </div>
+                                <div className='cardBottom'>
+                                    <h2 style={{fontSize: getFontSize(post.fields.title)}}>{post.fields.title}</h2>
+                                    <p>🕒{post.fields.cookTime}</p>
+                                </div>
                             </div>
-                            <div className='cardBottom'>
-                                <h2 style={{fontSize: getFontSize(post.fields.title)}}>{post.fields.title}</h2>
-                                <p>🕒{post.fields.cookTime}</p>
-                            </div>
-                        </div>
-                    </a>
-                    )
-                )}
+                        </a>
+                        )
+                    )}
+                </div>
             </div>
         </div>
     )
