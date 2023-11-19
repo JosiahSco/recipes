@@ -1,95 +1,37 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import styles from './recipes.css'
+import client from './contentful'
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+async function getPosts() {
+    const contClient = client;
+    const resp = await contClient.getEntries({ content_type: 'recipe' });
+    return resp.items
+}
+
+export default async function Recipes() {
+    const posts = await getPosts();
+
+    const getFontSize = (text) => {
+        let length = text.length;
+        return (1 / length) * 500 + 20
+    }
+
+    return (
+        <div className='recipesMain'>
+            {/* <h1>Recipe Book (work in progress)</h1> */}
+            {posts.map(post => (
+                <a href={'/' + post.fields.slug} key={post.fields.slug}>
+                    <div className='recipeCard'>
+                        <div className='imageContainer'> 
+                            <img className='image' src={post.fields.image.fields.file.url}></img>
+                        </div>
+                        <div className='cardBottom'>
+                            <h2 style={{fontSize: getFontSize(post.fields.title)}}>{post.fields.title}</h2>
+                            <p>🕒{post.fields.cookTime}</p>
+                        </div>
+                    </div>
+                </a>
+            )
+            )}
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    )
 }
