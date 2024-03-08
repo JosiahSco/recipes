@@ -8,7 +8,6 @@ export default function Recipes() {
 
     const [posts, setPosts] = useState([]);
     const [sortBy, setSortBy] = useState('Most Recent')
-    // const posts = await getPosts();
 
     useEffect(() => {
         async function init() {
@@ -26,7 +25,6 @@ export default function Recipes() {
     const handleSortChange = (e) => {
         const newSortBy = e.target.value;
         setSortBy(newSortBy);
-        // console.log(posts[0].fields.date)
         let sortedPosts;
         if (newSortBy === 'Cook Time: Descending') {
             sortedPosts = [...posts].sort((a,b) => b.fields.cookTimeMinutes - a.fields.cookTimeMinutes);
